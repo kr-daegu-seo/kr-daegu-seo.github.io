@@ -221,547 +221,322 @@
 </head>
 <body>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Oswald:wght@300;400;500;600;700&display=swap');
-
   :root{
-    --seo-warp:#455A64;
-    --seo-weft:#FF7043;
-    --seo-warp-d:#2E3E45;
-    --seo-warp-l:#7A8E97;
-    --seo-weft-l:#FFA986;
-    --seo-linen:#F4F1EC;
-    --seo-thread:#E7E1D6;
-    --seo-ink:#20292E;
-    --seo-paper:#FBF9F5;
+    --weave-cyan:#00BFFF;
+    --weave-magenta:#FF00FF;
+    --weave-ink:#0a0a12;
+    --weave-thread:rgba(0,191,255,.16);
+    --weave-thread-alt:rgba(255,0,255,.14);
   }
-
-  *{box-sizing:border-box;}
-
-  .seo-loom{
-    font-family:'Noto Sans KR',system-ui,sans-serif;
-    color:var(--seo-ink);
-    background:
-      repeating-linear-gradient(90deg, transparent 0 38px, rgba(69,90,100,.045) 38px 39px),
-      repeating-linear-gradient(0deg, transparent 0 38px, rgba(255,112,67,.04) 38px 39px),
-      var(--seo-paper);
-    line-height:1.85;
-    margin:0;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  .seo-loom h1,.seo-loom h2,.seo-loom h3{
-    font-family:'Noto Sans KR',sans-serif;
-    font-weight:700;
-    letter-spacing:-.01em;
-    line-height:1.3;
-  }
-
-  .seo-eyebrow{
-    font-family:'Oswald',sans-serif;
-    text-transform:uppercase;
-    letter-spacing:.32em;
-    font-weight:500;
-    font-size:.72rem;
-    color:var(--seo-weft);
-  }
-
-  a.seo-skip{
-    position:absolute;left:-9999px;top:auto;
-    background:var(--seo-warp);color:#fff;padding:10px 16px;border-radius:6px;z-index:999;
-  }
-  a.seo-skip:focus{left:16px;top:16px;}
-
-  /* ---------- HERO / LOOM ---------- */
-  .seo-hero{
+  #seo-weave *{box-sizing:border-box;}
+  #seo-weave{
     position:relative;
-    min-height:100vh;
+    margin:0;
+    padding:0;
+    background:var(--weave-ink);
+    color:#eaf6ff;
+    font-family:"Noto Sans KR",Arial,sans-serif;
+    font-weight:300;
+    line-height:1.9;
+    letter-spacing:.01em;
+    overflow-x:hidden;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&display=swap");
+
+  /* ── 직조 배경 캔버스 ── */
+  #weave-loom{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    display:block;
+  }
+
+  /* ── 히어로: 씨실날실 헤더 ── */
+  .weave-hero{
+    position:relative;
+    z-index:2;
+    padding:clamp(64px,12vw,140px) clamp(20px,6vw,88px) clamp(40px,7vw,80px);
+    min-height:78vh;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding:clamp(2rem,6vw,6rem) clamp(1.25rem,6vw,7rem);
-    overflow:hidden;
+  }
+  .weave-tag{
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--weave-cyan);
+    margin:0 0 clamp(18px,3vw,34px);
+    padding-left:2px;
+  }
+  .weave-tag span{color:var(--weave-magenta);}
+  .weave-hero h1{
+    font-weight:300;
+    font-size:clamp(34px,8vw,84px);
+    line-height:1.06;
+    margin:0;
+    letter-spacing:-.01em;
     color:#fff;
-    background:linear-gradient(135deg,var(--seo-warp-d) 0%,var(--seo-warp) 58%,#3d525c 100%);
   }
-  #seo-weave-canvas{
-    position:absolute;inset:0;width:100%;height:100%;
-    z-index:0;opacity:.9;
-  }
-  .seo-hero-inner{position:relative;z-index:2;max-width:900px;}
-  .seo-hero .seo-eyebrow{color:var(--seo-weft-l);}
-  .seo-slug{
-    font-family:'Oswald',sans-serif;font-weight:300;letter-spacing:.5em;
-    font-size:.7rem;text-transform:uppercase;color:rgba(255,255,255,.55);
-    margin-top:.5rem;
-  }
-  .seo-hero h1{
-    font-size:clamp(2.6rem,8vw,5.6rem);
-    font-weight:900;
-    margin:1.2rem 0 .3rem;
-    line-height:1.02;
-    letter-spacing:-.02em;
-  }
-  .seo-hero h1 .seo-accent{
-    color:var(--seo-weft-l);
-    position:relative;
+  .weave-hero h1 .warp{
     display:inline-block;
-  }
-  .seo-hero h1 .seo-accent::after{
-    content:"";position:absolute;left:0;right:0;bottom:.12em;height:.14em;
-    background:repeating-linear-gradient(90deg,var(--seo-weft) 0 8px,transparent 8px 14px);
-  }
-  .seo-hero-lead{
-    font-weight:300;font-size:clamp(1rem,2.4vw,1.35rem);
-    max-width:640px;color:rgba(255,255,255,.9);margin-top:1.2rem;
-  }
-  .seo-shuttle-row{
-    display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2.2rem;
-  }
-  .seo-thread-chip{
-    font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:.12em;
-    text-transform:uppercase;font-size:.7rem;
-    border:1px solid rgba(255,169,134,.5);
-    color:var(--seo-weft-l);
-    padding:.5rem 1rem;border-radius:100px;
-  }
-  .seo-scroll-cue{
-    position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);
-    z-index:2;font-family:'Oswald',sans-serif;letter-spacing:.3em;font-size:.62rem;
-    text-transform:uppercase;color:rgba(255,255,255,.55);text-align:center;
-  }
-  .seo-scroll-cue span{
-    display:block;width:1px;height:34px;margin:.6rem auto 0;
-    background:linear-gradient(var(--seo-weft-l),transparent);
-    animation:seoDrop 1.8s ease-in-out infinite;
-  }
-  @keyframes seoDrop{0%,100%{transform:scaleY(.4);opacity:.4;transform-origin:top}50%{transform:scaleY(1);opacity:1;transform-origin:top}}
-
-  /* ---------- BODY SHELL ---------- */
-  .seo-body{
-    max-width:1140px;margin:0 auto;
-    padding:clamp(2.5rem,6vw,5.5rem) clamp(1.1rem,4vw,2.5rem) 4rem;
-  }
-
-  /* The generator injects the 9 sections into .seo-content via       <section id="intro">
-        <h2>지역 소개</h2>
-        <p>대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
-      </section>
-      <section id="facts">
-        <h2>주요 통계</h2>
-        <ul class="facts">
-          <li>인구: 약 164,528명 (2021)</li>
-          <li>면적: 17.48 km²</li>
-          <li>신설: 1963년 1월 1일</li>
-        </ul>
-      </section>
-      <section id="history">
-        <h2>역사</h2>
-        <p>서구 지역은 조선시대 대구부 서중면(비산·평리·원대)과 달서면(내당·상중이)에 속했으며, 1914년 부군면 통폐합으로 달성군 달서면으로 편입되었습니다. 1938년 달성군 달서면·수성면·성북면이 대구부로 들어오면서 달서면 일대에 서부출장소가 설치된 것이 오늘날 서구의 직접적인 시초가 되었습니다. 1963년 1월 1일 대구시에 구제(區制)가 시행되면서 정식으로 &#x27;서구&#x27;가 출범하였고, 이후 1970~80년대 섬유·염색 공업의 폭발적 성장과 함께 인구가 급증해 한때 대구에서 손꼽히는 밀집 주거·공업 지역으로 번성했습니다. 1979년 착공해 1988년 완공된 대구염색산업단지는 흩어져 있던 염색 가공업체를 집적화하고 공동 폐수·열원 시설을 갖춰 서구를 명실상부한 염색산업의 심장으로 만들었습니다. 그러나 1988년 달서구 분리와 섬유산업의 장기 침체가 겹치며 인구가 지속적으로 감소해 도시재생이 시대적 과제로 떠올랐습니다. 2022년 서대구역 개통과 역세권 개발은 반세기 넘게 이어진 공업지대 서구에 새로운 전기를 마련한 사건으로 기록됩니다.</p>
-      </section>
-      <section id="geography">
-        <h2>지리·자연환경</h2>
-        <p>서구는 대구 분지의 서북부에 자리하며, 동쪽으로 중구·북구, 남쪽으로 남구·달서구, 북서쪽으로는 금호강을 경계로 북구·달성군과 맞닿아 있습니다. 지형은 대체로 평탄한 시가지이지만 남서쪽 끝에서 해발 299.6m의 와룡산이 솟아 달서구·달성군과 능선을 나누는데, 산의 형세가 마치 용이 누운 모습 같다 하여 붙은 이름입니다. 와룡산의 용미봉(龍尾峰) 자락은 서구 방향으로 흘러내려 봄이면 진달래와 영산홍 군락이 붉게 물드는 명소가 됩니다. 북쪽 경계를 따라 흐르는 금호강은 낙동강 본류로 이어지는 큰 하천으로, 서구의 자연 축을 형성하고 강변에는 산책로와 생태 공간이 조성되어 있습니다. 대구 특유의 분지 기후로 여름은 무덥고 겨울은 건조하며 연평균 기온은 대략 13~14℃ 안팎을 보입니다. 좁은 면적에 시가지·공단·하천·야산이 촘촘히 공존하는 것이 서구 지형의 특징입니다.</p>
-      </section>
-      <section id="characteristics">
-        <h2>지역 특징</h2>
-        <p>서구는 2021년 기준 약 16만 명이 거주하는 자치구로, 섬유·염색을 축으로 한 제조업이 지역 정체성을 규정합니다. 비산7동과 상중이동 일대에는 대구염색산업단지와 서대구산업단지가 밀집해 직물·염색·기계금속 업체가 집적되어 있고, 이 공단들이 오랫동안 대구 &#x27;섬유도시&#x27; 이미지의 실질적 토대가 되어 왔습니다. 다만 섬유산업의 구조적 사양화로 인구와 활력이 함께 줄어드는 도전에 직면했고, 이에 서구는 노후 공단 현대화, 서대구역세권 개발, 원도심 정비를 통한 도시재생을 핵심 전략으로 추진하고 있습니다. 한국폴리텍6대학 본부가 자리해 산업 인력 양성 기능도 담당합니다. 구를 상징하는 구목은 소나무, 구화는 진달래, 구조는 까치로, 강인함과 근면함이라는 공업도시 서구의 성격을 담고 있습니다. 낡은 공장지대라는 인상에서 벗어나 광역 교통 거점이자 재생 도시로 거듭나려는 전환기의 자치구라는 점이 서구의 오늘을 가장 잘 설명합니다.</p>
-      </section>
-      <section id="landmarks">
-        <h2>대표 명소</h2>
-        <ul>
-          <li><strong>서대구역</strong> — 2022년 3월 31일 KTX·SRT가 정차하기 시작한 고속철도역으로, 동대구역의 기능을 분산하기 위해 서구 이현동 일대에 건립되었다. 서대구역세권 개발의 중심축으로서 낡은 공단지대였던 서구를 대구 서부의 새로운 교통·업무 거점으로 바꾸는 관문 역할을 한다.</li>
-          <li><strong>와룡산 용미봉 진달래 군락지</strong> — 해발 299.6m 와룡산에서 서구 쪽으로 뻗어 내린 용미봉 일원은 매년 4월 초중순 진달래와 영산홍이 붉게 만개해 등산객을 불러 모으는 봄철 명소다. 용이 누운 형상에서 이름을 딴 와룡산은 서구·달서구·달성군을 잇는 능선으로, 도심 가까이에서 즐기는 산행 코스로 사랑받는다.</li>
-          <li><strong>달성토성마을</strong> — 골목마다 마을의 내력을 담은 벽화와 주민들이 손수 내놓은 화분으로 꾸며진 도심 속 정겨운 마을이다. 봄이면 골목을 가득 채우는 꽃과 벽화가 어우러져 산업도시 서구의 서정적 면모를 보여주는 걷기 좋은 관광 골목으로 자리 잡았다.</li>
-          <li><strong>대구염색산업단지</strong> — 1979년 착공해 1988년 완공된 국내 대표적 염색·직물 집적 산업단지로, 흩어져 있던 염색 가공업체를 모아 공동 폐수처리와 열병합 시설을 갖췄다. 대구를 섬유도시로 만든 실질적 심장부이자 서구 산업 정체성을 상징하는 공간이다.</li>
-        </ul>
-      </section>
-      <section id="heritage">
-        <h2>문화유산·문화시설</h2>
-        <ul>
-          <li><strong>서구문화회관</strong> — 서구 주민의 대표적 문화 향유 공간으로 공연·전시·강좌가 열리는 복합 문화시설이다. 지역 예술 동아리 발표와 생활문화 프로그램의 거점 역할을 한다.</li>
-          <li><strong>서구청소년수련관</strong> — 청소년의 문화·체험·동아리 활동을 지원하는 수련시설로, 방과 후 프로그램과 진로·체험 교육을 운영한다. 지역 청소년 문화 활동의 중심 공간이다.</li>
-          <li><strong>서구국민체육센터·구민운동장</strong> — 수영장·체력단련실 등을 갖춘 생활체육 시설과 각종 체육행사가 열리는 구민운동장으로, 주민 건강 증진과 지역 스포츠 저변 확대를 담당한다.</li>
-          <li><strong>달성토성마을 벽화골목</strong> — 마을의 역사를 담은 벽화와 설치 작품이 골목마다 이어지는 야외 문화 공간이다. 주민 참여로 조성되어 도시재생과 마을공동체 문화의 상징으로 꼽힌다.</li>
-        </ul>
-      </section>
-      <section id="nature">
-        <h2>자연·휴식</h2>
-        <ul>
-          <li><strong>서구청 옥상생태공원</strong> — 구청 옥상에 조성된 도심 생태 휴식 공간으로 잔디마당, 습지생태원, 나비·잠자리원, 데크쉼터를 갖추었다. 콘크리트 도심 한가운데서 주민에게 녹지와 휴식을 제공하는 이색 명소다.</li>
-          <li><strong>이현동 근린공원</strong> — 잔디광장과 산책로, 오감숲길, 배드민턴장, 야외운동기구, 정자와 파고라를 갖춘 생활밀착형 공원이다. 서대구역 인근 주민들의 일상적 여가와 운동 공간으로 이용된다.</li>
-          <li><strong>와룡산 등산로</strong> — 용미봉과 상리봉 전망대로 이어지는 도심 근교 산행 코스로, 봄철 진달래·영산홍 군락과 정상부 조망이 백미다. 서구·달서구 시가지를 한눈에 담을 수 있어 가벼운 산행지로 인기다.</li>
-          <li><strong>금호강변 산책로</strong> — 서구 북쪽 경계를 흐르는 금호강을 따라 조성된 강변 산책·자전거 길이다. 물길과 어우러진 개방감 있는 녹지로 걷기와 라이딩을 즐기기 좋다.</li>
-        </ul>
-      </section>
-      <section id="transport">
-        <h2>교통</h2>
-        <p>서구는 경부고속도로 서대구 나들목과 중부내륙고속도로지선, 광주대구고속도로가 만나는 대구 서부의 도로 관문으로, 예로부터 물류와 교통의 요충지 역할을 해 왔습니다. 2022년 3월 개통한 서대구역에서는 KTX와 SRT를 이용할 수 있어 동대구역의 기능을 분산하는 고속철도 거점으로 부상했습니다. 시외·고속버스는 비산동에 위치한 북부정류장을 통해 경북 북부와 중부권 각지로 연결됩니다. 다만 대구 도시철도 3호선이 서대구역과 북부정류장 등 주요 수요처를 살짝 비껴가는 선형이어서, 구 내부 통행은 성서3번·204번·234번·240번·524번·서구1번 등 시내버스가 핵심 수단이 됩니다. 이러한 지하철 접근성의 한계는 서대구역세권 개발과 함께 대중교통 연계 강화가 지역의 중요한 과제로 남아 있는 배경이기도 합니다.</p>
-      </section>
-      <section id="symbols">
-        <h2>지역 상징</h2>
-        <ul class="symbols">
-          <li>구화(꽃): 진달래</li>
-          <li>구목(나무): 소나무</li>
-          <li>구조(새): 까치</li>
-        </ul>
-      </section>
-      <section id="faq">
-        <h2>자주 묻는 질문</h2>
-        <div class="faq">
-          <details>
-            <summary>대구 서구청은 어디에 있나요?</summary>
-            <p>대구광역시 서구 국채보상로 257(내당동)에 위치합니다. 자세한 위치와 민원 안내는 서구청 공식 홈페이지(https://www.dgs.go.kr)에서 확인할 수 있습니다.</p>
-          </details>
-          <details>
-            <summary>대구 서구를 대표하는 명소는 어디인가요?</summary>
-            <p>2022년 개통한 서대구역, 봄철 진달래·영산홍이 붉게 물드는 와룡산 용미봉, 골목 벽화가 정겨운 달성토성마을이 대표 명소로 꼽힙니다. 서구청 옥상생태공원도 도심 속 이색 휴식처로 인기가 있습니다.</p>
-          </details>
-          <details>
-            <summary>서구는 왜 &#x27;섬유도시&#x27;와 관련이 깊나요?</summary>
-            <p>1979년 착공해 1988년 완공된 대구염색산업단지와 서대구산업단지가 서구에 밀집해, 직물·염색 산업이 오랫동안 지역 경제의 중심이었기 때문입니다. 이 공단들이 대구를 섬유도시로 만든 실질적 토대가 되었습니다.</p>
-          </details>
-          <details>
-            <summary>서대구역에서는 어떤 열차를 탈 수 있나요?</summary>
-            <p>서대구역은 2022년 3월 31일부터 KTX와 SRT가 정차하는 고속철도역으로, 서울·부산 방면 등 주요 노선을 이용할 수 있습니다. 동대구역의 이용 부담을 분산하는 대구 서부의 관문 역할을 합니다.</p>
-          </details>
-          <details>
-            <summary>서구에는 지하철역이 있나요?</summary>
-            <p>대구 도시철도 3호선이 서구의 주요 수요처를 살짝 비껴가는 선형이어서 구를 직접 관통하는 역은 제한적입니다. 따라서 구 내부 이동은 성서3번·204번·240번 등 시내버스와 서대구역·북부정류장 연계가 핵심입니다.</p>
-          </details>
-          <details>
-            <summary>와룡산 진달래는 언제 볼 수 있나요?</summary>
-            <p>보통 매년 4월 초중순경 와룡산 용미봉 일원에서 진달래와 영산홍 군락이 만개해 붉은 장관을 이룹니다. 이 시기에 맞춰 가벼운 산행을 즐기려는 등산객이 많이 찾습니다.</p>
-          </details>
-        </div>
-      </section>
-      <section id="links">
-        <h2>공식 링크</h2>
-        <ul>
-          <li><a href="https://www.dgs.go.kr" rel="noopener">대구광역시 서구청 공식 홈페이지</a></li>
-          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지</a></li>
-        </ul>
-      </section>
-      <section id="github">
-        <h2>GitHub</h2>
-        <ul>
-          <li><a href="https://github.com/kr-daegu-seo" rel="noopener">GitHub 조직: kr-daegu-seo</a></li>
-          <li><a href="https://github.com/kr-daegu-seo/kr-daegu-seo.github.io" rel="noopener">이 사이트 저장소</a></li>
-        </ul>
-      </section>
-      <section id="sources">
-        <h2>출처</h2>
-        <ul class="sources">
-          <li><a href="https://ko.wikipedia.org/wiki/%EC%84%9C%EA%B5%AC_(%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C)" rel="noopener">서구 (대구광역시) - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지 (공원·와룡산·명소)</a> (조회 2026-07-08)</li>
-          <li><a href="https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EC%97%BC%EC%83%89%EC%82%B0%EC%97%85%EB%8B%A8%EC%A7%80" rel="noopener">대구염색산업단지 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="http://www.busan.com/view/busan/view.php?code=2022032422283212715" rel="noopener">서대구역 31일 개통…KTX·SRT 정차 - 부산일보</a> (조회 2026-07-08)</li>
-        </ul>
-      </section>.
-     Everything below styles those real sections so text is always readable. */
-  .seo-content section{
     position:relative;
-    background:var(--seo-paper);
-    border:1px solid var(--seo-thread);
-    border-radius:14px;
-    padding:clamp(1.4rem,3.5vw,2.6rem);
-    margin:0 0 1.4rem;
-    scroll-margin-top:1.5rem;
+    background:linear-gradient(90deg,var(--weave-cyan),var(--weave-magenta));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
   }
-  /* woven left edge on every section */
-  .seo-content section::before{
-    content:"";position:absolute;left:0;top:14px;bottom:14px;width:5px;border-radius:5px;
-    background:repeating-linear-gradient(0deg,var(--seo-warp) 0 9px,var(--seo-weft) 9px 18px);
-    opacity:.85;
+  .weave-hero .lede{
+    max-width:60ch;
+    margin:clamp(24px,4vw,40px) 0 0;
+    font-size:clamp(15px,2.1vw,19px);
+    color:#b9d4e6;
+    font-weight:300;
   }
-  .seo-content section > *:first-child{margin-top:0;}
-  .seo-content h2{
-    font-size:clamp(1.4rem,3.5vw,2rem);
-    margin:0 0 1rem;
-    padding-left:.2rem;
+  .weave-scroll{
+    margin-top:clamp(36px,6vw,64px);
+    font-size:11px;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    color:#6f8ba0;
+  }
+
+  /* ── 본문: 직조 선형 그리드 ── */
+  .weave-body{
     position:relative;
+    z-index:2;
+    padding:clamp(30px,6vw,72px) clamp(20px,6vw,88px) clamp(70px,10vw,150px);
+    max-width:1180px;
+    margin:0 auto;
   }
-  .seo-content h2::after{
-    content:"";display:block;width:52px;height:3px;margin-top:.7rem;
-    background:var(--seo-weft);
-    box-shadow:8px 0 0 var(--seo-warp),16px 0 0 var(--seo-weft);
+  .weave-body section{
+    position:relative;
+    padding:clamp(30px,5vw,58px) 0 clamp(30px,5vw,58px) clamp(22px,4vw,58px);
+    border-top:1px solid var(--weave-thread);
   }
-  .seo-content h3{font-size:1.15rem;margin:1.6rem 0 .6rem;color:var(--seo-warp);}
-  .seo-content p{margin:.8rem 0;}
-  .seo-content a{color:var(--seo-warp);text-decoration:underline;text-decoration-color:var(--seo-weft-l);}
-
-  /* number the sections like weft rows */
-  .seo-content section{counter-increment:seo-row;}
-  .seo-content{counter-reset:seo-row;}
-  .seo-content h2::before{
-    content:counter(seo-row,decimal-leading-zero);
-    font-family:'Oswald',sans-serif;font-weight:600;
-    font-size:.78rem;letter-spacing:.15em;color:var(--seo-weft);
-    display:block;margin-bottom:.35rem;
+  .weave-body section:first-child{border-top:none;}
+  /* 날실(수직 선) 표식 */
+  .weave-body section::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:1px;
+    background:linear-gradient(180deg,var(--weave-cyan),transparent 70%);
+    opacity:.5;
+    transform-origin:top;
+    transition:transform .5s ease,background .5s ease,opacity .5s ease;
   }
-
-  /* facts grid → thread bobbins */
-  .seo-content .facts{
-    list-style:none;padding:0;margin:1.2rem 0 0;
-    display:grid;gap:.7rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  .weave-body section:nth-child(even)::before{
+    background:linear-gradient(180deg,var(--weave-magenta),transparent 70%);
   }
-  .seo-content .facts li{
-    background:linear-gradient(180deg,#fff,var(--seo-linen));
-    border:1px solid var(--seo-thread);border-radius:10px;
-    padding:.85rem .95rem;font-size:.9rem;position:relative;
-  }
-  .seo-content .facts li::before{
-    content:"";position:absolute;top:0;left:.95rem;right:.95rem;height:3px;
-    background:var(--seo-weft);border-radius:0 0 3px 3px;
-  }
-  .seo-content .facts strong{
-    display:block;font-family:'Oswald',sans-serif;font-weight:500;
-    color:var(--seo-warp);text-transform:uppercase;letter-spacing:.08em;
-    font-size:.68rem;margin-bottom:.25rem;
-  }
-
-  /* symbols → warp swatches */
-  .seo-content .symbols{
-    display:grid;gap:.8rem;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-    list-style:none;padding:0;margin:1.2rem 0 0;
-  }
-  .seo-content .symbols li{
-    border:1px solid var(--seo-thread);border-radius:10px;overflow:hidden;
-    background:#fff;
-  }
-  .seo-content .symbols li strong{
-    display:block;background:var(--seo-warp);color:#fff;
-    font-family:'Oswald',sans-serif;font-weight:400;letter-spacing:.1em;
-    text-transform:uppercase;font-size:.7rem;padding:.5rem .8rem;
-  }
-  .seo-content .symbols li span,
-  .seo-content .symbols li p{display:block;padding:.7rem .8rem;margin:0;font-size:.9rem;}
-
-  /* faq → details/summary as woven fold-outs */
-  .seo-content .faq{margin-top:1.2rem;}
-  .seo-content details{
-    border:1px solid var(--seo-thread);border-radius:10px;
-    background:#fff;margin-bottom:.7rem;overflow:hidden;
-  }
-  .seo-content details[open]{border-color:var(--seo-weft-l);}
-  .seo-content summary{
-    cursor:pointer;list-style:none;padding:.95rem 1.1rem;
-    font-weight:500;position:relative;padding-right:2.4rem;
-    background:linear-gradient(90deg,rgba(69,90,100,.05),transparent);
-  }
-  .seo-content summary::-webkit-details-marker{display:none;}
-  .seo-content summary::after{
-    content:"+";position:absolute;right:1.1rem;top:50%;transform:translateY(-50%);
-    font-family:'Oswald',sans-serif;font-weight:600;color:var(--seo-weft);
-    font-size:1.3rem;transition:transform .25s;
-  }
-  .seo-content details[open] summary::after{content:"–";}
-  .seo-content details > *:not(summary){padding:0 1.1rem 1.1rem;margin:.6rem 0 0;}
-
-  /* lists of landmarks etc. */
-  .seo-content ul:not(.facts):not(.symbols):not(.faq){padding-left:1.2rem;}
-  .seo-content li{margin:.35rem 0;}
-
-  /* ---------- WOVEN INTERACTIVE STRIP (enhancement over content) ---------- */
-  .seo-tapestry{
-    max-width:1140px;margin:0 auto;
-    padding:0 clamp(1.1rem,4vw,2.5rem) 4rem;
-  }
-  .seo-tap-head{margin-bottom:1.6rem;}
-  .seo-tap-head h2{font-size:clamp(1.5rem,4vw,2.2rem);margin:.4rem 0 .3rem;}
-  .seo-tap-head p{color:#4a595f;max-width:620px;margin:0;}
-  .seo-tap-grid{
-    display:grid;gap:1px;background:var(--seo-thread);
-    border:1px solid var(--seo-thread);border-radius:14px;overflow:hidden;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  }
-  .seo-tile{
-    background:var(--seo-paper);padding:1.4rem 1.3rem;position:relative;
-    min-height:150px;transition:background .35s,color .35s;overflow:hidden;
-  }
-  .seo-tile::before{
-    content:"";position:absolute;inset:0;z-index:0;opacity:.5;
-    background:repeating-linear-gradient(90deg,transparent 0 11px,rgba(69,90,100,.06) 11px 12px);
-    transition:opacity .35s;
-  }
-  .seo-tile:hover,.seo-tile:focus-within{background:var(--seo-warp);color:#fff;}
-  .seo-tile:hover::before,.seo-tile:focus-within::before{
+  .weave-body section:hover::before{
     opacity:1;
-    background:repeating-linear-gradient(45deg,transparent 0 11px,rgba(255,169,134,.28) 11px 12px);
+    transform:scaleX(3.5);
   }
-  .seo-tile > *{position:relative;z-index:1;}
-  .seo-tile .seo-tnum{
-    font-family:'Oswald',sans-serif;font-weight:600;letter-spacing:.15em;
-    font-size:.7rem;color:var(--seo-weft);
-  }
-  .seo-tile:hover .seo-tnum,.seo-tile:focus-within .seo-tnum{color:var(--seo-weft-l);}
-  .seo-tile h3{font-size:1.15rem;margin:.5rem 0 .5rem;}
-  .seo-tile p{font-size:.88rem;margin:0;color:inherit;opacity:.92;line-height:1.7;}
 
-  .seo-foot{
-    text-align:center;padding:2rem 1.2rem 3rem;color:#6c7a80;font-size:.82rem;
-    font-family:'Oswald',sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  .weave-body h2{
+    font-weight:400;
+    font-size:clamp(11px,1.6vw,13px);
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--weave-cyan);
+    margin:0 0 clamp(16px,3vw,26px);
   }
+  .weave-body section:nth-child(even) h2{color:var(--weave-magenta);}
+  .weave-body h3{
+    font-weight:300;
+    font-size:clamp(22px,3.6vw,34px);
+    line-height:1.25;
+    margin:0 0 clamp(14px,2.5vw,22px);
+    color:#fff;
+  }
+  .weave-body p{
+    font-weight:300;
+    font-size:clamp(15px,1.9vw,17px);
+    color:#c4dbea;
+    max-width:70ch;
+    margin:0 0 1.1em;
+  }
+  .weave-body a{color:var(--weave-cyan);text-decoration:none;border-bottom:1px solid var(--weave-thread);}
+  .weave-body a:hover{color:var(--weave-magenta);border-bottom-color:var(--weave-magenta);}
+
+  /* ── facts: 씨실 가로선 리스트 ── */
+  .weave-body .facts{
+    list-style:none;
+    padding:0;
+    margin:clamp(14px,3vw,24px) 0 0;
+    display:grid;
+    gap:0;
+  }
+  .weave-body .facts li,
+  .weave-body .facts dt,
+  .weave-body .facts dd{
+    position:relative;
+    padding:clamp(12px,2vw,18px) 0 clamp(12px,2vw,18px) clamp(20px,3vw,38px);
+    border-bottom:1px solid var(--weave-thread);
+    font-weight:300;
+    color:#d6ebf7;
+    font-size:clamp(14px,1.8vw,16px);
+    transition:transform .35s cubic-bezier(.2,.7,.3,1),padding .35s ease,color .35s ease;
+    overflow:hidden;
+  }
+  .weave-body .facts li::before,
+  .weave-body .facts dd::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:50%;
+    width:clamp(12px,2.4vw,26px);
+    height:1px;
+    background:var(--weave-cyan);
+    transform:translateY(-50%);
+    transition:width .35s ease,background .35s ease;
+  }
+  .weave-body .facts li:hover,
+  .weave-body .facts dd:hover{
+    transform:translateX(clamp(6px,1.4vw,16px));
+    color:#fff;
+  }
+  .weave-body .facts li:hover::before,
+  .weave-body .facts dd:hover::before{
+    width:clamp(22px,4vw,48px);
+    background:var(--weave-magenta);
+  }
+  .weave-body .facts dt{
+    border-bottom:none;
+    padding-bottom:2px;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--weave-magenta);
+  }
+
+  /* ── symbols: 엮인 태그 ── */
+  .weave-body .symbols{
+    list-style:none;
+    padding:0;
+    margin:clamp(14px,3vw,24px) 0 0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+  }
+  .weave-body .symbols li,
+  .weave-body .symbols dt,
+  .weave-body .symbols dd{
+    position:relative;
+    padding:clamp(8px,1.6vw,12px) clamp(16px,2.6vw,26px);
+    font-weight:300;
+    font-size:clamp(13px,1.7vw,15px);
+    color:#d6ebf7;
+    border-right:1px solid var(--weave-thread);
+    border-bottom:1px solid var(--weave-thread);
+    transition:letter-spacing .35s ease,color .35s ease,background .35s ease;
+  }
+  .weave-body .symbols li:hover,
+  .weave-body .symbols dd:hover{
+    color:var(--weave-ink);
+    background:var(--weave-cyan);
+    letter-spacing:.06em;
+  }
+  .weave-body .symbols dt{
+    width:100%;
+    border:none;
+    padding-left:0;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--weave-magenta);
+  }
+
+  /* ── FAQ: details/summary = 접힌 씨실 ── */
+  .weave-body .faq,
+  .weave-body details.faq{margin-top:clamp(16px,3vw,28px);}
+  .weave-body details{
+    position:relative;
+    border-top:1px solid var(--weave-thread);
+    padding:0;
+    transition:background .4s ease;
+  }
+  .weave-body details:last-of-type{border-bottom:1px solid var(--weave-thread);}
+  .weave-body summary{
+    cursor:pointer;
+    list-style:none;
+    padding:clamp(16px,2.6vw,22px) clamp(36px,5vw,54px) clamp(16px,2.6vw,22px) clamp(4px,1vw,10px);
+    font-weight:400;
+    font-size:clamp(15px,2vw,18px);
+    color:#eaf6ff;
+    position:relative;
+    transition:padding-left .4s ease,color .4s ease;
+  }
+  .weave-body summary::-webkit-details-marker{display:none;}
+  .weave-body summary::before{
+    content:"";
+    position:absolute;
+    right:clamp(4px,1vw,12px);
+    top:50%;
+    width:clamp(16px,3vw,28px);
+    height:1px;
+    background:var(--weave-cyan);
+    transform:translateY(-50%);
+    transition:background .4s ease;
+  }
+  .weave-body summary::after{
+    content:"";
+    position:absolute;
+    right:calc(clamp(4px,1vw,12px) + clamp(7px,1.4vw,13px));
+    top:50%;
+    width:1px;
+    height:clamp(16px,3vw,28px);
+    background:var(--weave-magenta);
+    transform:translate(0,-50%);
+    transition:transform .4s ease,opacity .4s ease;
+  }
+  .weave-body details[open] summary::after{transform:translate(0,-50%) scaleY(0);opacity:0;}
+  .weave-body summary:hover{color:var(--weave-cyan);padding-left:clamp(14px,2.4vw,26px);}
+  .weave-body details[open] summary{color:var(--weave-magenta);}
+  .weave-body details > *:not(summary){
+    padding:0 clamp(4px,1vw,10px) clamp(20px,3vw,28px) clamp(4px,1vw,10px);
+    margin:0;
+    color:#b9d4e6;
+    font-weight:300;
+  }
+
+  .weave-foot{
+    position:relative;
+    z-index:2;
+    padding:clamp(30px,5vw,50px) clamp(20px,6vw,88px);
+    border-top:1px solid var(--weave-thread);
+    font-size:12px;
+    letter-spacing:.06em;
+    color:#6f8ba0;
+    text-align:center;
+  }
+  .weave-foot b{color:var(--weave-cyan);font-weight:400;}
 
   @media (max-width:640px){
-    .seo-content .symbols,.seo-content .facts{grid-template-columns:1fr 1fr;}
+    .weave-body section{padding-left:16px;}
   }
   @media (prefers-reduced-motion:reduce){
-    .seo-scroll-cue span{animation:none;}
+    #seo-weave *{transition:none!important;}
   }
 </style>
 
-<a class="seo-skip" href="#seo-main">본문 바로가기</a>
+<div id="seo-weave">
+  <canvas id="weave-loom" aria-hidden="true"></canvas>
 
-<div class="seo-loom">
-
-  <header class="seo-hero">
-    <canvas id="seo-weave-canvas" aria-hidden="true"></canvas>
-    <div class="seo-hero-inner">
-      <p class="seo-eyebrow">대구광역시 · 織 Weaving Grid</p>
-      <p class="seo-slug">kr-daegu-seo</p>
-      <h1>씨실과 날실이 짜는<br><span class="seo-accent">서구</span></h1>
-      <p class="seo-hero-lead">대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
-      <div class="seo-shuttle-row" aria-hidden="true">
-        <span class="seo-thread-chip">Warp · 날실</span>
-        <span class="seo-thread-chip">Weft · 씨실</span>
-        <span class="seo-thread-chip">섬유 · 방직</span>
-        <span class="seo-thread-chip">대구광역시 서구</span>
-      </div>
-    </div>
-    <div class="seo-scroll-cue">Scroll<span></span></div>
+  <header class="weave-hero">
+    <p class="weave-tag">대구광역시 · 서구 <span>/</span> kr-daegu-seo</p>
+    <h1>씨실과 날실이 만나<br><span class="warp">서구</span>를 짜다</h1>
+    <p class="lede">대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
+    <p class="weave-scroll">↓ 아래로 엮어보기</p>
   </header>
 
-  <main id="seo-main" class="seo-body">
-    <!-- 인터랙션 위의 '향상' 스트립: JS가 region-data JSON을 읽어 채운다.
-         JS가 꺼져 있으면 이 블록은 비어 있을 뿐, 아래       <section id="intro">
-        <h2>지역 소개</h2>
-        <p>대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
-      </section>
-      <section id="facts">
-        <h2>주요 통계</h2>
-        <ul class="facts">
-          <li>인구: 약 164,528명 (2021)</li>
-          <li>면적: 17.48 km²</li>
-          <li>신설: 1963년 1월 1일</li>
-        </ul>
-      </section>
-      <section id="history">
-        <h2>역사</h2>
-        <p>서구 지역은 조선시대 대구부 서중면(비산·평리·원대)과 달서면(내당·상중이)에 속했으며, 1914년 부군면 통폐합으로 달성군 달서면으로 편입되었습니다. 1938년 달성군 달서면·수성면·성북면이 대구부로 들어오면서 달서면 일대에 서부출장소가 설치된 것이 오늘날 서구의 직접적인 시초가 되었습니다. 1963년 1월 1일 대구시에 구제(區制)가 시행되면서 정식으로 &#x27;서구&#x27;가 출범하였고, 이후 1970~80년대 섬유·염색 공업의 폭발적 성장과 함께 인구가 급증해 한때 대구에서 손꼽히는 밀집 주거·공업 지역으로 번성했습니다. 1979년 착공해 1988년 완공된 대구염색산업단지는 흩어져 있던 염색 가공업체를 집적화하고 공동 폐수·열원 시설을 갖춰 서구를 명실상부한 염색산업의 심장으로 만들었습니다. 그러나 1988년 달서구 분리와 섬유산업의 장기 침체가 겹치며 인구가 지속적으로 감소해 도시재생이 시대적 과제로 떠올랐습니다. 2022년 서대구역 개통과 역세권 개발은 반세기 넘게 이어진 공업지대 서구에 새로운 전기를 마련한 사건으로 기록됩니다.</p>
-      </section>
-      <section id="geography">
-        <h2>지리·자연환경</h2>
-        <p>서구는 대구 분지의 서북부에 자리하며, 동쪽으로 중구·북구, 남쪽으로 남구·달서구, 북서쪽으로는 금호강을 경계로 북구·달성군과 맞닿아 있습니다. 지형은 대체로 평탄한 시가지이지만 남서쪽 끝에서 해발 299.6m의 와룡산이 솟아 달서구·달성군과 능선을 나누는데, 산의 형세가 마치 용이 누운 모습 같다 하여 붙은 이름입니다. 와룡산의 용미봉(龍尾峰) 자락은 서구 방향으로 흘러내려 봄이면 진달래와 영산홍 군락이 붉게 물드는 명소가 됩니다. 북쪽 경계를 따라 흐르는 금호강은 낙동강 본류로 이어지는 큰 하천으로, 서구의 자연 축을 형성하고 강변에는 산책로와 생태 공간이 조성되어 있습니다. 대구 특유의 분지 기후로 여름은 무덥고 겨울은 건조하며 연평균 기온은 대략 13~14℃ 안팎을 보입니다. 좁은 면적에 시가지·공단·하천·야산이 촘촘히 공존하는 것이 서구 지형의 특징입니다.</p>
-      </section>
-      <section id="characteristics">
-        <h2>지역 특징</h2>
-        <p>서구는 2021년 기준 약 16만 명이 거주하는 자치구로, 섬유·염색을 축으로 한 제조업이 지역 정체성을 규정합니다. 비산7동과 상중이동 일대에는 대구염색산업단지와 서대구산업단지가 밀집해 직물·염색·기계금속 업체가 집적되어 있고, 이 공단들이 오랫동안 대구 &#x27;섬유도시&#x27; 이미지의 실질적 토대가 되어 왔습니다. 다만 섬유산업의 구조적 사양화로 인구와 활력이 함께 줄어드는 도전에 직면했고, 이에 서구는 노후 공단 현대화, 서대구역세권 개발, 원도심 정비를 통한 도시재생을 핵심 전략으로 추진하고 있습니다. 한국폴리텍6대학 본부가 자리해 산업 인력 양성 기능도 담당합니다. 구를 상징하는 구목은 소나무, 구화는 진달래, 구조는 까치로, 강인함과 근면함이라는 공업도시 서구의 성격을 담고 있습니다. 낡은 공장지대라는 인상에서 벗어나 광역 교통 거점이자 재생 도시로 거듭나려는 전환기의 자치구라는 점이 서구의 오늘을 가장 잘 설명합니다.</p>
-      </section>
-      <section id="landmarks">
-        <h2>대표 명소</h2>
-        <ul>
-          <li><strong>서대구역</strong> — 2022년 3월 31일 KTX·SRT가 정차하기 시작한 고속철도역으로, 동대구역의 기능을 분산하기 위해 서구 이현동 일대에 건립되었다. 서대구역세권 개발의 중심축으로서 낡은 공단지대였던 서구를 대구 서부의 새로운 교통·업무 거점으로 바꾸는 관문 역할을 한다.</li>
-          <li><strong>와룡산 용미봉 진달래 군락지</strong> — 해발 299.6m 와룡산에서 서구 쪽으로 뻗어 내린 용미봉 일원은 매년 4월 초중순 진달래와 영산홍이 붉게 만개해 등산객을 불러 모으는 봄철 명소다. 용이 누운 형상에서 이름을 딴 와룡산은 서구·달서구·달성군을 잇는 능선으로, 도심 가까이에서 즐기는 산행 코스로 사랑받는다.</li>
-          <li><strong>달성토성마을</strong> — 골목마다 마을의 내력을 담은 벽화와 주민들이 손수 내놓은 화분으로 꾸며진 도심 속 정겨운 마을이다. 봄이면 골목을 가득 채우는 꽃과 벽화가 어우러져 산업도시 서구의 서정적 면모를 보여주는 걷기 좋은 관광 골목으로 자리 잡았다.</li>
-          <li><strong>대구염색산업단지</strong> — 1979년 착공해 1988년 완공된 국내 대표적 염색·직물 집적 산업단지로, 흩어져 있던 염색 가공업체를 모아 공동 폐수처리와 열병합 시설을 갖췄다. 대구를 섬유도시로 만든 실질적 심장부이자 서구 산업 정체성을 상징하는 공간이다.</li>
-        </ul>
-      </section>
-      <section id="heritage">
-        <h2>문화유산·문화시설</h2>
-        <ul>
-          <li><strong>서구문화회관</strong> — 서구 주민의 대표적 문화 향유 공간으로 공연·전시·강좌가 열리는 복합 문화시설이다. 지역 예술 동아리 발표와 생활문화 프로그램의 거점 역할을 한다.</li>
-          <li><strong>서구청소년수련관</strong> — 청소년의 문화·체험·동아리 활동을 지원하는 수련시설로, 방과 후 프로그램과 진로·체험 교육을 운영한다. 지역 청소년 문화 활동의 중심 공간이다.</li>
-          <li><strong>서구국민체육센터·구민운동장</strong> — 수영장·체력단련실 등을 갖춘 생활체육 시설과 각종 체육행사가 열리는 구민운동장으로, 주민 건강 증진과 지역 스포츠 저변 확대를 담당한다.</li>
-          <li><strong>달성토성마을 벽화골목</strong> — 마을의 역사를 담은 벽화와 설치 작품이 골목마다 이어지는 야외 문화 공간이다. 주민 참여로 조성되어 도시재생과 마을공동체 문화의 상징으로 꼽힌다.</li>
-        </ul>
-      </section>
-      <section id="nature">
-        <h2>자연·휴식</h2>
-        <ul>
-          <li><strong>서구청 옥상생태공원</strong> — 구청 옥상에 조성된 도심 생태 휴식 공간으로 잔디마당, 습지생태원, 나비·잠자리원, 데크쉼터를 갖추었다. 콘크리트 도심 한가운데서 주민에게 녹지와 휴식을 제공하는 이색 명소다.</li>
-          <li><strong>이현동 근린공원</strong> — 잔디광장과 산책로, 오감숲길, 배드민턴장, 야외운동기구, 정자와 파고라를 갖춘 생활밀착형 공원이다. 서대구역 인근 주민들의 일상적 여가와 운동 공간으로 이용된다.</li>
-          <li><strong>와룡산 등산로</strong> — 용미봉과 상리봉 전망대로 이어지는 도심 근교 산행 코스로, 봄철 진달래·영산홍 군락과 정상부 조망이 백미다. 서구·달서구 시가지를 한눈에 담을 수 있어 가벼운 산행지로 인기다.</li>
-          <li><strong>금호강변 산책로</strong> — 서구 북쪽 경계를 흐르는 금호강을 따라 조성된 강변 산책·자전거 길이다. 물길과 어우러진 개방감 있는 녹지로 걷기와 라이딩을 즐기기 좋다.</li>
-        </ul>
-      </section>
-      <section id="transport">
-        <h2>교통</h2>
-        <p>서구는 경부고속도로 서대구 나들목과 중부내륙고속도로지선, 광주대구고속도로가 만나는 대구 서부의 도로 관문으로, 예로부터 물류와 교통의 요충지 역할을 해 왔습니다. 2022년 3월 개통한 서대구역에서는 KTX와 SRT를 이용할 수 있어 동대구역의 기능을 분산하는 고속철도 거점으로 부상했습니다. 시외·고속버스는 비산동에 위치한 북부정류장을 통해 경북 북부와 중부권 각지로 연결됩니다. 다만 대구 도시철도 3호선이 서대구역과 북부정류장 등 주요 수요처를 살짝 비껴가는 선형이어서, 구 내부 통행은 성서3번·204번·234번·240번·524번·서구1번 등 시내버스가 핵심 수단이 됩니다. 이러한 지하철 접근성의 한계는 서대구역세권 개발과 함께 대중교통 연계 강화가 지역의 중요한 과제로 남아 있는 배경이기도 합니다.</p>
-      </section>
-      <section id="symbols">
-        <h2>지역 상징</h2>
-        <ul class="symbols">
-          <li>구화(꽃): 진달래</li>
-          <li>구목(나무): 소나무</li>
-          <li>구조(새): 까치</li>
-        </ul>
-      </section>
-      <section id="faq">
-        <h2>자주 묻는 질문</h2>
-        <div class="faq">
-          <details>
-            <summary>대구 서구청은 어디에 있나요?</summary>
-            <p>대구광역시 서구 국채보상로 257(내당동)에 위치합니다. 자세한 위치와 민원 안내는 서구청 공식 홈페이지(https://www.dgs.go.kr)에서 확인할 수 있습니다.</p>
-          </details>
-          <details>
-            <summary>대구 서구를 대표하는 명소는 어디인가요?</summary>
-            <p>2022년 개통한 서대구역, 봄철 진달래·영산홍이 붉게 물드는 와룡산 용미봉, 골목 벽화가 정겨운 달성토성마을이 대표 명소로 꼽힙니다. 서구청 옥상생태공원도 도심 속 이색 휴식처로 인기가 있습니다.</p>
-          </details>
-          <details>
-            <summary>서구는 왜 &#x27;섬유도시&#x27;와 관련이 깊나요?</summary>
-            <p>1979년 착공해 1988년 완공된 대구염색산업단지와 서대구산업단지가 서구에 밀집해, 직물·염색 산업이 오랫동안 지역 경제의 중심이었기 때문입니다. 이 공단들이 대구를 섬유도시로 만든 실질적 토대가 되었습니다.</p>
-          </details>
-          <details>
-            <summary>서대구역에서는 어떤 열차를 탈 수 있나요?</summary>
-            <p>서대구역은 2022년 3월 31일부터 KTX와 SRT가 정차하는 고속철도역으로, 서울·부산 방면 등 주요 노선을 이용할 수 있습니다. 동대구역의 이용 부담을 분산하는 대구 서부의 관문 역할을 합니다.</p>
-          </details>
-          <details>
-            <summary>서구에는 지하철역이 있나요?</summary>
-            <p>대구 도시철도 3호선이 서구의 주요 수요처를 살짝 비껴가는 선형이어서 구를 직접 관통하는 역은 제한적입니다. 따라서 구 내부 이동은 성서3번·204번·240번 등 시내버스와 서대구역·북부정류장 연계가 핵심입니다.</p>
-          </details>
-          <details>
-            <summary>와룡산 진달래는 언제 볼 수 있나요?</summary>
-            <p>보통 매년 4월 초중순경 와룡산 용미봉 일원에서 진달래와 영산홍 군락이 만개해 붉은 장관을 이룹니다. 이 시기에 맞춰 가벼운 산행을 즐기려는 등산객이 많이 찾습니다.</p>
-          </details>
-        </div>
-      </section>
-      <section id="links">
-        <h2>공식 링크</h2>
-        <ul>
-          <li><a href="https://www.dgs.go.kr" rel="noopener">대구광역시 서구청 공식 홈페이지</a></li>
-          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지</a></li>
-        </ul>
-      </section>
-      <section id="github">
-        <h2>GitHub</h2>
-        <ul>
-          <li><a href="https://github.com/kr-daegu-seo" rel="noopener">GitHub 조직: kr-daegu-seo</a></li>
-          <li><a href="https://github.com/kr-daegu-seo/kr-daegu-seo.github.io" rel="noopener">이 사이트 저장소</a></li>
-        </ul>
-      </section>
-      <section id="sources">
-        <h2>출처</h2>
-        <ul class="sources">
-          <li><a href="https://ko.wikipedia.org/wiki/%EC%84%9C%EA%B5%AC_(%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C)" rel="noopener">서구 (대구광역시) - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지 (공원·와룡산·명소)</a> (조회 2026-07-08)</li>
-          <li><a href="https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EC%97%BC%EC%83%89%EC%82%B0%EC%97%85%EB%8B%A8%EC%A7%80" rel="noopener">대구염색산업단지 - 위키백과</a> (조회 2026-07-08)</li>
-          <li><a href="http://www.busan.com/view/busan/view.php?code=2022032422283212715" rel="noopener">서대구역 31일 개통…KTX·SRT 정차 - 부산일보</a> (조회 2026-07-08)</li>
-        </ul>
-      </section> 실제 텍스트는 그대로 읽힌다. -->
-    <section class="seo-tapestry" id="seo-tapestry" hidden aria-label="서구 직조 요약">
-      <div class="seo-tap-head">
-        <p class="seo-eyebrow">Loom Preview</p>
-        <h2>한 폭의 서구, 다섯 올로 짜다</h2>
-        <p>날실(터전)과 씨실(이야기)이 교차하며 완성되는 서구의 단면. 각 올을 따라가면 아래 본문의 이야기가 이어집니다.</p>
-      </div>
-      <div class="seo-tap-grid" id="seo-tap-grid"></div>
-    </section>
-
-    <div id="region-data" hidden>{"sido":"대구광역시","sigungu":"서구","org_slug":"kr-daegu-seo","site_url":"https://kr-daegu-seo.github.io/","title":"서구 지역 정보 · 대구광역시","intro":"대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.","history":"서구 지역은 조선시대 대구부 서중면(비산·평리·원대)과 달서면(내당·상중이)에 속했으며, 1914년 부군면 통폐합으로 달성군 달서면으로 편입되었습니다. 1938년 달성군 달서면·수성면·성북면이 대구부로 들어오면서 달서면 일대에 서부출장소가 설치된 것이 오늘날 서구의 직접적인 시초가 되었습니다. 1963년 1월 1일 대구시에 구제(區制)가 시행되면서 정식으로 &#x27;서구&#x27;가 출범하였고, 이후 1970~80년대 섬유·염색 공업의 폭발적 성장과 함께 인구가 급증해 한때 대구에서 손꼽히는 밀집 주거·공업 지역으로 번성했습니다. 1979년 착공해 1988년 완공된 대구염색산업단지는 흩어져 있던 염색 가공업체를 집적화하고 공동 폐수·열원 시설을 갖춰 서구를 명실상부한 염색산업의 심장으로 만들었습니다. 그러나 1988년 달서구 분리와 섬유산업의 장기 침체가 겹치며 인구가 지속적으로 감소해 도시재생이 시대적 과제로 떠올랐습니다. 2022년 서대구역 개통과 역세권 개발은 반세기 넘게 이어진 공업지대 서구에 새로운 전기를 마련한 사건으로 기록됩니다.","geography_nature":"서구는 대구 분지의 서북부에 자리하며, 동쪽으로 중구·북구, 남쪽으로 남구·달서구, 북서쪽으로는 금호강을 경계로 북구·달성군과 맞닿아 있습니다. 지형은 대체로 평탄한 시가지이지만 남서쪽 끝에서 해발 299.6m의 와룡산이 솟아 달서구·달성군과 능선을 나누는데, 산의 형세가 마치 용이 누운 모습 같다 하여 붙은 이름입니다. 와룡산의 용미봉(龍尾峰) 자락은 서구 방향으로 흘러내려 봄이면 진달래와 영산홍 군락이 붉게 물드는 명소가 됩니다. 북쪽 경계를 따라 흐르는 금호강은 낙동강 본류로 이어지는 큰 하천으로, 서구의 자연 축을 형성하고 강변에는 산책로와 생태 공간이 조성되어 있습니다. 대구 특유의 분지 기후로 여름은 무덥고 겨울은 건조하며 연평균 기온은 대략 13~14℃ 안팎을 보입니다. 좁은 면적에 시가지·공단·하천·야산이 촘촘히 공존하는 것이 서구 지형의 특징입니다.","characteristics":"서구는 2021년 기준 약 16만 명이 거주하는 자치구로, 섬유·염색을 축으로 한 제조업이 지역 정체성을 규정합니다. 비산7동과 상중이동 일대에는 대구염색산업단지와 서대구산업단지가 밀집해 직물·염색·기계금속 업체가 집적되어 있고, 이 공단들이 오랫동안 대구 &#x27;섬유도시&#x27; 이미지의 실질적 토대가 되어 왔습니다. 다만 섬유산업의 구조적 사양화로 인구와 활력이 함께 줄어드는 도전에 직면했고, 이에 서구는 노후 공단 현대화, 서대구역세권 개발, 원도심 정비를 통한 도시재생을 핵심 전략으로 추진하고 있습니다. 한국폴리텍6대학 본부가 자리해 산업 인력 양성 기능도 담당합니다. 구를 상징하는 구목은 소나무, 구화는 진달래, 구조는 까치로, 강인함과 근면함이라는 공업도시 서구의 성격을 담고 있습니다. 낡은 공장지대라는 인상에서 벗어나 광역 교통 거점이자 재생 도시로 거듭나려는 전환기의 자치구라는 점이 서구의 오늘을 가장 잘 설명합니다.","transport":"서구는 경부고속도로 서대구 나들목과 중부내륙고속도로지선, 광주대구고속도로가 만나는 대구 서부의 도로 관문으로, 예로부터 물류와 교통의 요충지 역할을 해 왔습니다. 2022년 3월 개통한 서대구역에서는 KTX와 SRT를 이용할 수 있어 동대구역의 기능을 분산하는 고속철도 거점으로 부상했습니다. 시외·고속버스는 비산동에 위치한 북부정류장을 통해 경북 북부와 중부권 각지로 연결됩니다. 다만 대구 도시철도 3호선이 서대구역과 북부정류장 등 주요 수요처를 살짝 비껴가는 선형이어서, 구 내부 통행은 성서3번·204번·234번·240번·524번·서구1번 등 시내버스가 핵심 수단이 됩니다. 이러한 지하철 접근성의 한계는 서대구역세권 개발과 함께 대중교통 연계 강화가 지역의 중요한 과제로 남아 있는 배경이기도 합니다."}</div>
-
-    <div class="seo-content">
-            <section id="intro">
+  <main class="weave-body">
+          <section id="intro">
         <h2>지역 소개</h2>
         <p>대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
       </section>
@@ -876,122 +651,138 @@
           <li><a href="http://www.busan.com/view/busan/view.php?code=2022032422283212715" rel="noopener">서대구역 31일 개통…KTX·SRT 정차 - 부산일보</a> (조회 2026-07-08)</li>
         </ul>
       </section>
-    </div>
   </main>
 
-  <p class="seo-foot">서구 · 대구광역시 — Woven Grid Landing · https://kr-daegu-seo.github.io/</p>
+  <footer class="weave-foot">
+    <p>서구 지역 정보 · 대구광역시 · <b>대구광역시 서구</b> · 직조(Weave) 지역 랜딩</p>
+  </footer>
 </div>
 
 <script>
 (function(){
-  "use strict";
+  var root=document.getElementById('seo-weave');
+  if(!root) return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
-  /* ---------- 1) 위빙 그리드 라인 애니메이션 (코어 모션) ---------- */
-  var canvas = document.getElementById('seo-weave-canvas');
-  if (canvas && canvas.getContext){
-    var ctx = canvas.getContext('2d');
+  /* ── region-data 읽기(읽기만, 생성 금지) ── */
+  var data={};
+  try{
+    var el=document.getElementById('region-data');
+    if(el&&el.textContent) data=JSON.parse(el.textContent)||{};
+  }catch(e){data={};}
+
+  var CY='#00BFFF', MG='#FF00FF';
+
+  /* ══════════════════════════════════════
+     직조 캔버스: 씨실(가로) · 날실(세로) 격자
+     hover(마우스) 근처의 선들이 서로 밀려남
+     ══════════════════════════════════════ */
+  var canvas=document.getElementById('weave-loom');
+  if(canvas&&!reduce&&canvas.getContext){
+    var ctx=canvas.getContext('2d');
     var W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);
-    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var WARP='#7A8E97', WEFT='#FF7043', WEFTL='#FFA986';
-    var gap=44, t=0;
+    var GAP=46;                 // 실 간격
+    var warp=[], weft=[];       // 세로선, 가로선
+    var mouse={x:-9999,y:-9999,on:false};
+    var raf=null;
 
-    function resize(){
-      var r=canvas.parentElement.getBoundingClientRect();
-      W=r.width; H=r.height;
+    function build(){
+      W=root.clientWidth; H=root.clientHeight;
       canvas.width=W*dpr; canvas.height=H*dpr;
+      canvas.style.width=W+'px'; canvas.style.height=H+'px';
       ctx.setTransform(dpr,0,0,dpr,0,0);
+      warp=[]; weft=[];
+      for(var x=GAP/2;x<W;x+=GAP) warp.push({base:x,off:0});
+      for(var y=GAP/2;y<H;y+=GAP) weft.push({base:y,off:0});
     }
-    resize();
-    window.addEventListener('resize', resize);
+
+    function push(threads,axisPos,mousePos,perp){
+      // 마우스 perp(수직거리) 안의 선을 axis 방향으로 밀어냄
+      var R=120;
+      for(var i=0;i<threads.length;i++){
+        var t=threads[i];
+        var d=Math.abs(t.base-mousePos);          // 선과 마우스의 거리(선의 축 방향)
+        var pd=Math.abs(perp);                      // 마우스가 이 축 라인에서 떨어진 정도
+        var target=0;
+        if(mouse.on && d<R){
+          var force=(1-d/R);
+          var dir=(t.base<mousePos)?-1:1;
+          target=dir*force*force*22;                // 밀어내는 양
+        }
+        t.off += (target-t.off)*0.12;               // 부드럽게
+      }
+    }
 
     function draw(){
       ctx.clearRect(0,0,W,H);
-      var cols=Math.ceil(W/gap)+2, rows=Math.ceil(H/gap)+2;
+      // 마우스 기준으로 밀기 계산
+      push(warp, 0, mouse.x, 0);   // 세로선: x가 마우스x 기준 밀림
+      push(weft, 0, mouse.y, 0);   // 가로선: y가 마우스y 기준 밀림
 
-      // 날실 (세로, warp) — 정적인 터전
       ctx.lineWidth=1;
-      for(var i=0;i<cols;i++){
-        var x=i*gap;
-        ctx.strokeStyle='rgba(122,142,151,'+(0.22+0.12*Math.sin(t*0.6+i*0.4))+')';
+
+      // 날실(세로) — 시안
+      for(var i=0;i<warp.length;i++){
+        var w=warp[i]; var x=w.base+w.off;
+        var glow=mouse.on?Math.max(0,1-Math.abs(w.base-mouse.x)/160):0;
+        ctx.strokeStyle='rgba(0,191,255,'+(0.05+glow*0.5).toFixed(3)+')';
         ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke();
       }
-      // 씨실 (가로, weft) — 좌우로 짜여 들어오는 실
-      for(var j=0;j<rows;j++){
-        var y=j*gap;
-        var prog=(t*0.5 + j*0.5)%(cols+3);   // shuttle 위치
-        var grad=ctx.createLinearGradient(0,y,W,y);
-        grad.addColorStop(0,'rgba(255,112,67,0.05)');
-        grad.addColorStop(Math.max(0,Math.min(1,prog/(cols+3))),'rgba(255,169,134,0.55)');
-        grad.addColorStop(1,'rgba(255,112,67,0.05)');
-        ctx.strokeStyle=grad; ctx.lineWidth=1.2;
+      // 씨실(가로) — 마젠타
+      for(var j=0;j<weft.length;j++){
+        var f=weft[j]; var y=f.base+f.off;
+        var glow2=mouse.on?Math.max(0,1-Math.abs(f.base-mouse.y)/160):0;
+        ctx.strokeStyle='rgba(255,0,255,'+(0.04+glow2*0.45).toFixed(3)+')';
         ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke();
-
-        // 교차점의 매듭 (씨실이 지나간 자리)
-        var kx=(prog%cols)*gap;
-        ctx.fillStyle=WEFTL;
-        ctx.globalAlpha=0.8;
-        ctx.beginPath(); ctx.arc(kx,y,2.4,0,Math.PI*2); ctx.fill();
-        ctx.globalAlpha=1;
       }
-
-      // 은은한 대각 하이라이트 (직물 광택)
-      ctx.strokeStyle='rgba(255,255,255,0.04)'; ctx.lineWidth=1;
-      for(var d=-rows;d<cols;d+=3){
-        ctx.beginPath(); ctx.moveTo(d*gap,0); ctx.lineTo(d*gap+H,H); ctx.stroke();
+      // 교차점(직조 매듭) — 마우스 근처만
+      if(mouse.on){
+        for(var a=0;a<warp.length;a++){
+          var wx=warp[a].base+warp[a].off;
+          if(Math.abs(warp[a].base-mouse.x)>160) continue;
+          for(var b=0;b<weft.length;b++){
+            var wy=weft[b].base+weft[b].off;
+            var dist=Math.hypot(wx-mouse.x,wy-mouse.y);
+            if(dist>150) continue;
+            var k=1-dist/150;
+            ctx.fillStyle=((a+b)%2===0)?'rgba(0,191,255,'+(k*0.9).toFixed(3)+')':'rgba(255,0,255,'+(k*0.9).toFixed(3)+')';
+            var r=1+k*2.4;
+            ctx.beginPath(); ctx.arc(wx,wy,r,0,6.2832); ctx.fill();
+          }
+        }
       }
-
-      t+=0.02;
-      if(!reduce) requestAnimationFrame(draw);
+      raf=requestAnimationFrame(draw);
     }
-    if(reduce){ draw(); } else { requestAnimationFrame(draw); }
+
+    function onMove(e){
+      var r=root.getBoundingClientRect();
+      var cx=(e.touches?e.touches[0].clientX:e.clientX);
+      var cy=(e.touches?e.touches[0].clientY:e.clientY);
+      mouse.x=cx-r.left; mouse.y=cy-r.top; mouse.on=true;
+    }
+    function onLeave(){mouse.on=false;}
+
+    build();
+    root.addEventListener('mousemove',onMove);
+    root.addEventListener('touchmove',onMove,{passive:true});
+    root.addEventListener('mouseleave',onLeave);
+    root.addEventListener('touchend',onLeave);
+    var rebuild; window.addEventListener('resize',function(){clearTimeout(rebuild);rebuild=setTimeout(build,180);});
+    // 콘텐츠 로드로 높이가 바뀌면 재구성
+    if(window.ResizeObserver){try{new ResizeObserver(function(){build();}).observe(root);}catch(e){}}
+    draw();
   }
 
-  /* ---------- 2) region-data 로 직조 요약 타일 채우기 (progressive enhancement) ---------- */
-  try{
-    var node=document.getElementById('region-data');
-    if(node){
-      var d=JSON.parse(node.textContent||'{}');
-      var sg=d.sigungu||'이 지역';
-      function trim(s,n){ s=(s||'').trim(); return s.length>n? s.slice(0,n).replace(/\s+\S*$/,'')+'…' : s; }
-
-      var threads=[
-        {n:'Thread 01', h:'터를 짜는 실', b:trim(d.geography_nature, 150), fb:sg+'의 자연과 지형이 첫 날실이 됩니다.'},
-        {n:'Thread 02', h:'시간을 짜는 실', b:trim(d.history, 150), fb:sg+'이 지나온 시간이 씨실로 교차합니다.'},
-        {n:'Thread 03', h:'삶을 짜는 실', b:trim(d.characteristics, 150), fb:sg+' 사람들의 결이 촘촘히 엮입니다.'},
-        {n:'Thread 04', h:'길을 짜는 실', b:trim(d.transport, 150), fb:sg+'을 안팎으로 잇는 길들이 짜여 있습니다.'},
-        {n:'Thread 05', h:'첫 인사', b:trim(d.intro, 150), fb:sg+'으로 짜인 한 폭의 이야기를 펼칩니다.'}
-      ];
-
-      var grid=document.getElementById('seo-tap-grid');
-      var strip=document.getElementById('seo-tapestry');
-      var filled=0;
-      threads.forEach(function(th){
-        var body=th.b || th.fb;
-        if(!body) return;
-        filled++;
-        var tile=document.createElement('article');
-        tile.className='seo-tile';
-        tile.setAttribute('tabindex','0');
-        var pnum=document.createElement('span'); pnum.className='seo-tnum'; pnum.textContent=th.n;
-        var hh=document.createElement('h3'); hh.textContent=th.h;
-        var pp=document.createElement('p'); pp.textContent=body;
-        tile.appendChild(pnum); tile.appendChild(hh); tile.appendChild(pp);
-        grid.appendChild(tile);
-      });
-      if(filled>0 && strip){ strip.hidden=false; }
-    }
-  }catch(e){ /* 데이터 없거나 파싱 실패 시 본문만 노출 — SEO 안전 */ }
-
-  /* ---------- 3) 스크롤 진입 시 섹션이 '짜여 들어오는' 향상 ---------- */
-  if('IntersectionObserver' in window){
-    var secs=document.querySelectorAll('.seo-content section');
-    secs.forEach(function(s){ s.style.opacity='0'; s.style.transform='translateY(18px)'; s.style.transition='opacity .6s ease, transform .6s ease'; });
+  /* ── 진입 시 섹션에 미세한 짜임 리듬(스크롤 페이드) ── */
+  if('IntersectionObserver' in window && !reduce){
+    var secs=root.querySelectorAll('.weave-body section');
+    for(var s=0;s<secs.length;s++){secs[s].style.opacity='0';secs[s].style.transform='translateY(18px)';secs[s].style.transition='opacity .8s ease, transform .8s cubic-bezier(.2,.7,.3,1)';}
     var io=new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if(en.isIntersecting){ en.target.style.opacity='1'; en.target.style.transform='none'; io.unobserve(en.target); }
+        if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='none';io.unobserve(en.target);}
       });
     },{threshold:0.12});
-    secs.forEach(function(s){ io.observe(s); });
+    for(var s2=0;s2<secs.length;s2++) io.observe(secs[s2]);
   }
 })();
 </script>
