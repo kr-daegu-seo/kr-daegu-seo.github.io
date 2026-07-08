@@ -267,6 +267,42 @@ body { padding-top: var(--cg-strip-h); }
 .cg-colophon-note { margin: 4px 0 0; color: #9a9aa8; }
 @media (max-width: 640px) { .cg-strip-label { display: none; } }
 @media (prefers-reduced-motion: reduce) { .cg-skip { transition: none; } }
+
+/* ---- Mobile reading view (touch / small screens) ------------------------------------- */
+/* The immersive per-구 template is desktop-only. On touch devices and narrow screens the
+   .cg-read view is shown instead — it uses only safe, high-contrast CSS so text can never
+   go invisible on iOS Safari (no background-clip:text, backdrop-filter, 100vh, :hover-gated
+   reveals, or mix-blend-mode). Fully namespaced + generator-controlled. */
+.cg-read { display: none; }
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+  /* Neutralise immersive templates that lock scrolling / lock the viewport on <body>. */
+  html, body { overflow-x: hidden !important; overflow-y: auto !important; height: auto !important;
+    min-height: 0 !important; position: static !important; touch-action: auto !important; background: #ffffff !important; }
+  .cg-immersive { display: none !important; }
+  .cg-read { display: block; }
+}
+.cg-read { max-width: 720px; margin: 0 auto; padding: 20px 18px 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  color: #17171f; background: #ffffff; line-height: 1.75; -webkit-text-size-adjust: 100%; }
+.cg-read * { max-width: 100%; box-sizing: border-box; }
+.cg-read-head { padding: 8px 0 16px; border-bottom: 3px solid var(--cg-ra, #2d5bff); margin-bottom: 20px; }
+.cg-read-eyebrow { margin: 0 0 4px; color: var(--cg-rd, #333); font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+.cg-read-head h1 { margin: 0; font-size: clamp(30px, 8vw, 40px); line-height: 1.15; color: #14141c; font-weight: 800; }
+.cg-read h2 { font-size: 20px; margin: 30px 0 10px; padding-left: 11px; color: #14141c; font-weight: 700;
+  border-left: 5px solid var(--cg-ra, #2d5bff); }
+.cg-read p { margin: 0 0 12px; font-size: 17px; color: #23232d; }
+.cg-read section { margin: 0; }
+.cg-read ul { margin: 8px 0 0; padding-left: 20px; }
+.cg-read li { margin: 8px 0; font-size: 16px; color: #23232d; }
+.cg-read li strong { color: #111119; font-weight: 700; }
+.cg-read .facts, .cg-read .symbols { list-style: none; padding: 14px 16px; margin: 8px 0 0;
+  background: #f5f6fa; border: 1px solid #e6e8f0; border-radius: 12px; }
+.cg-read .faq details { border: 1px solid #e6e8f0; border-radius: 10px; padding: 10px 14px; margin: 8px 0; background: #fbfbfd; }
+.cg-read .faq summary { cursor: pointer; font-weight: 700; font-size: 16px; color: #14141c; }
+.cg-read .faq details p { margin: 8px 0 2px; color: #44454f; }
+.cg-read a { color: #1a46d8; word-break: break-word; }
+.cg-read .sources { font-size: 14px; color: #55565f; }
+.cg-read .sources a { color: #3a5bd0; }
 </style>
 </head>
 <body>
@@ -275,6 +311,7 @@ body { padding-top: var(--cg-strip-h); }
     <span class="cg-ad">AD</span><span class="cg-strip-label">후원 파트너</span><span class="cg-strip-list"><a class="cg-strip-item" href="https://ikoffices.com" rel="sponsored noopener" target="_blank">일광오피스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://mobidicsaju.com" rel="sponsored noopener" target="_blank">모비딕 사주</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://www.foodskorea.com/" rel="sponsored noopener" target="_blank">전국팔도 식품도감</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://myflowmakers.com" rel="sponsored noopener" target="_blank">마이플로우메이커스</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonlijispace.com" rel="sponsored noopener" target="_blank">연리지 인테리어</a><span class="cg-strip-dot" aria-hidden="true">·</span><a class="cg-strip-item" href="https://yeonliji.io" rel="sponsored noopener" target="_blank">주식회사 연리지</a><span class="cg-strip-dot" aria-hidden="true">·</span><span class="cg-strip-item cg-strip-text">세무·법률 자문</span></span>
   </aside>
   <div id="cg-main" tabindex="-1"></div>
+  <div class="cg-immersive">
 <style>
   :root{
     --weave-cyan:#00BFFF;
@@ -841,6 +878,130 @@ body { padding-top: var(--cg-strip-h); }
   }
 })();
 </script>
+  </div>
+  <main class="cg-read" id="cg-read" role="main" lang="ko" style="--cg-ra:#ab2b4f;--cg-ra2:#d06439;--cg-rd:#57192b">
+    <header class="cg-read-head">
+      <p class="cg-read-eyebrow">대구광역시</p>
+      <h1>서구</h1>
+    </header>
+    <div class="cg-read-body">
+      <section id="r-intro">
+        <h2>지역 소개</h2>
+        <p>대구광역시 서구는 낙동강 지류인 금호강이 북서쪽을 감싸 흐르고 와룡산 자락이 남서 경계를 이루는 면적 17.48㎢의 도심형 자치구입니다. 조선시대 대구부 서중면과 달서면 일대가 뿌리이며, 비산동·평리동·원대동·내당동·상중이동을 아우르는 9개 법정동과 17개 행정동으로 짜여 있습니다. 무엇보다 이 지역은 대구를 &#x27;섬유도시&#x27;로 각인시킨 염색·직물 산업의 본산으로, 대구염색산업단지와 서대구산업단지가 지역 경제의 뼈대를 이루어 왔습니다. 2022년 서대구역이 KTX·SRT 정차역으로 개통하면서 서대구역세권 개발이 본격화되어 낡은 공단 이미지를 벗고 새로운 도시 축으로 탈바꿈하는 중입니다. 달성토성마을의 정겨운 골목 벽화와 와룡산 용미봉의 진달래 군락은 산업의 도시에 서정을 더하는 서구만의 얼굴입니다.</p>
+      </section>
+      <section id="r-facts">
+        <h2>주요 통계</h2>
+        <ul class="facts">
+          <li>인구: 약 164,528명 (2021)</li>
+          <li>면적: 17.48 km²</li>
+          <li>신설: 1963년 1월 1일</li>
+        </ul>
+      </section>
+      <section id="r-history">
+        <h2>역사</h2>
+        <p>서구 지역은 조선시대 대구부 서중면(비산·평리·원대)과 달서면(내당·상중이)에 속했으며, 1914년 부군면 통폐합으로 달성군 달서면으로 편입되었습니다. 1938년 달성군 달서면·수성면·성북면이 대구부로 들어오면서 달서면 일대에 서부출장소가 설치된 것이 오늘날 서구의 직접적인 시초가 되었습니다. 1963년 1월 1일 대구시에 구제(區制)가 시행되면서 정식으로 &#x27;서구&#x27;가 출범하였고, 이후 1970~80년대 섬유·염색 공업의 폭발적 성장과 함께 인구가 급증해 한때 대구에서 손꼽히는 밀집 주거·공업 지역으로 번성했습니다. 1979년 착공해 1988년 완공된 대구염색산업단지는 흩어져 있던 염색 가공업체를 집적화하고 공동 폐수·열원 시설을 갖춰 서구를 명실상부한 염색산업의 심장으로 만들었습니다. 그러나 1988년 달서구 분리와 섬유산업의 장기 침체가 겹치며 인구가 지속적으로 감소해 도시재생이 시대적 과제로 떠올랐습니다. 2022년 서대구역 개통과 역세권 개발은 반세기 넘게 이어진 공업지대 서구에 새로운 전기를 마련한 사건으로 기록됩니다.</p>
+      </section>
+      <section id="r-geography">
+        <h2>지리·자연환경</h2>
+        <p>서구는 대구 분지의 서북부에 자리하며, 동쪽으로 중구·북구, 남쪽으로 남구·달서구, 북서쪽으로는 금호강을 경계로 북구·달성군과 맞닿아 있습니다. 지형은 대체로 평탄한 시가지이지만 남서쪽 끝에서 해발 299.6m의 와룡산이 솟아 달서구·달성군과 능선을 나누는데, 산의 형세가 마치 용이 누운 모습 같다 하여 붙은 이름입니다. 와룡산의 용미봉(龍尾峰) 자락은 서구 방향으로 흘러내려 봄이면 진달래와 영산홍 군락이 붉게 물드는 명소가 됩니다. 북쪽 경계를 따라 흐르는 금호강은 낙동강 본류로 이어지는 큰 하천으로, 서구의 자연 축을 형성하고 강변에는 산책로와 생태 공간이 조성되어 있습니다. 대구 특유의 분지 기후로 여름은 무덥고 겨울은 건조하며 연평균 기온은 대략 13~14℃ 안팎을 보입니다. 좁은 면적에 시가지·공단·하천·야산이 촘촘히 공존하는 것이 서구 지형의 특징입니다.</p>
+      </section>
+      <section id="r-characteristics">
+        <h2>지역 특징</h2>
+        <p>서구는 2021년 기준 약 16만 명이 거주하는 자치구로, 섬유·염색을 축으로 한 제조업이 지역 정체성을 규정합니다. 비산7동과 상중이동 일대에는 대구염색산업단지와 서대구산업단지가 밀집해 직물·염색·기계금속 업체가 집적되어 있고, 이 공단들이 오랫동안 대구 &#x27;섬유도시&#x27; 이미지의 실질적 토대가 되어 왔습니다. 다만 섬유산업의 구조적 사양화로 인구와 활력이 함께 줄어드는 도전에 직면했고, 이에 서구는 노후 공단 현대화, 서대구역세권 개발, 원도심 정비를 통한 도시재생을 핵심 전략으로 추진하고 있습니다. 한국폴리텍6대학 본부가 자리해 산업 인력 양성 기능도 담당합니다. 구를 상징하는 구목은 소나무, 구화는 진달래, 구조는 까치로, 강인함과 근면함이라는 공업도시 서구의 성격을 담고 있습니다. 낡은 공장지대라는 인상에서 벗어나 광역 교통 거점이자 재생 도시로 거듭나려는 전환기의 자치구라는 점이 서구의 오늘을 가장 잘 설명합니다.</p>
+      </section>
+      <section id="r-landmarks">
+        <h2>대표 명소</h2>
+        <ul>
+          <li><strong>서대구역</strong> — 2022년 3월 31일 KTX·SRT가 정차하기 시작한 고속철도역으로, 동대구역의 기능을 분산하기 위해 서구 이현동 일대에 건립되었다. 서대구역세권 개발의 중심축으로서 낡은 공단지대였던 서구를 대구 서부의 새로운 교통·업무 거점으로 바꾸는 관문 역할을 한다.</li>
+          <li><strong>와룡산 용미봉 진달래 군락지</strong> — 해발 299.6m 와룡산에서 서구 쪽으로 뻗어 내린 용미봉 일원은 매년 4월 초중순 진달래와 영산홍이 붉게 만개해 등산객을 불러 모으는 봄철 명소다. 용이 누운 형상에서 이름을 딴 와룡산은 서구·달서구·달성군을 잇는 능선으로, 도심 가까이에서 즐기는 산행 코스로 사랑받는다.</li>
+          <li><strong>달성토성마을</strong> — 골목마다 마을의 내력을 담은 벽화와 주민들이 손수 내놓은 화분으로 꾸며진 도심 속 정겨운 마을이다. 봄이면 골목을 가득 채우는 꽃과 벽화가 어우러져 산업도시 서구의 서정적 면모를 보여주는 걷기 좋은 관광 골목으로 자리 잡았다.</li>
+          <li><strong>대구염색산업단지</strong> — 1979년 착공해 1988년 완공된 국내 대표적 염색·직물 집적 산업단지로, 흩어져 있던 염색 가공업체를 모아 공동 폐수처리와 열병합 시설을 갖췄다. 대구를 섬유도시로 만든 실질적 심장부이자 서구 산업 정체성을 상징하는 공간이다.</li>
+        </ul>
+      </section>
+      <section id="r-heritage">
+        <h2>문화유산·문화시설</h2>
+        <ul>
+          <li><strong>서구문화회관</strong> — 서구 주민의 대표적 문화 향유 공간으로 공연·전시·강좌가 열리는 복합 문화시설이다. 지역 예술 동아리 발표와 생활문화 프로그램의 거점 역할을 한다.</li>
+          <li><strong>서구청소년수련관</strong> — 청소년의 문화·체험·동아리 활동을 지원하는 수련시설로, 방과 후 프로그램과 진로·체험 교육을 운영한다. 지역 청소년 문화 활동의 중심 공간이다.</li>
+          <li><strong>서구국민체육센터·구민운동장</strong> — 수영장·체력단련실 등을 갖춘 생활체육 시설과 각종 체육행사가 열리는 구민운동장으로, 주민 건강 증진과 지역 스포츠 저변 확대를 담당한다.</li>
+          <li><strong>달성토성마을 벽화골목</strong> — 마을의 역사를 담은 벽화와 설치 작품이 골목마다 이어지는 야외 문화 공간이다. 주민 참여로 조성되어 도시재생과 마을공동체 문화의 상징으로 꼽힌다.</li>
+        </ul>
+      </section>
+      <section id="r-nature">
+        <h2>자연·휴식</h2>
+        <ul>
+          <li><strong>서구청 옥상생태공원</strong> — 구청 옥상에 조성된 도심 생태 휴식 공간으로 잔디마당, 습지생태원, 나비·잠자리원, 데크쉼터를 갖추었다. 콘크리트 도심 한가운데서 주민에게 녹지와 휴식을 제공하는 이색 명소다.</li>
+          <li><strong>이현동 근린공원</strong> — 잔디광장과 산책로, 오감숲길, 배드민턴장, 야외운동기구, 정자와 파고라를 갖춘 생활밀착형 공원이다. 서대구역 인근 주민들의 일상적 여가와 운동 공간으로 이용된다.</li>
+          <li><strong>와룡산 등산로</strong> — 용미봉과 상리봉 전망대로 이어지는 도심 근교 산행 코스로, 봄철 진달래·영산홍 군락과 정상부 조망이 백미다. 서구·달서구 시가지를 한눈에 담을 수 있어 가벼운 산행지로 인기다.</li>
+          <li><strong>금호강변 산책로</strong> — 서구 북쪽 경계를 흐르는 금호강을 따라 조성된 강변 산책·자전거 길이다. 물길과 어우러진 개방감 있는 녹지로 걷기와 라이딩을 즐기기 좋다.</li>
+        </ul>
+      </section>
+      <section id="r-transport">
+        <h2>교통</h2>
+        <p>서구는 경부고속도로 서대구 나들목과 중부내륙고속도로지선, 광주대구고속도로가 만나는 대구 서부의 도로 관문으로, 예로부터 물류와 교통의 요충지 역할을 해 왔습니다. 2022년 3월 개통한 서대구역에서는 KTX와 SRT를 이용할 수 있어 동대구역의 기능을 분산하는 고속철도 거점으로 부상했습니다. 시외·고속버스는 비산동에 위치한 북부정류장을 통해 경북 북부와 중부권 각지로 연결됩니다. 다만 대구 도시철도 3호선이 서대구역과 북부정류장 등 주요 수요처를 살짝 비껴가는 선형이어서, 구 내부 통행은 성서3번·204번·234번·240번·524번·서구1번 등 시내버스가 핵심 수단이 됩니다. 이러한 지하철 접근성의 한계는 서대구역세권 개발과 함께 대중교통 연계 강화가 지역의 중요한 과제로 남아 있는 배경이기도 합니다.</p>
+      </section>
+      <section id="r-symbols">
+        <h2>지역 상징</h2>
+        <ul class="symbols">
+          <li>구화(꽃): 진달래</li>
+          <li>구목(나무): 소나무</li>
+          <li>구조(새): 까치</li>
+        </ul>
+      </section>
+      <section id="r-faq">
+        <h2>자주 묻는 질문</h2>
+        <div class="faq">
+          <details>
+            <summary>대구 서구청은 어디에 있나요?</summary>
+            <p>대구광역시 서구 국채보상로 257(내당동)에 위치합니다. 자세한 위치와 민원 안내는 서구청 공식 홈페이지(https://www.dgs.go.kr)에서 확인할 수 있습니다.</p>
+          </details>
+          <details>
+            <summary>대구 서구를 대표하는 명소는 어디인가요?</summary>
+            <p>2022년 개통한 서대구역, 봄철 진달래·영산홍이 붉게 물드는 와룡산 용미봉, 골목 벽화가 정겨운 달성토성마을이 대표 명소로 꼽힙니다. 서구청 옥상생태공원도 도심 속 이색 휴식처로 인기가 있습니다.</p>
+          </details>
+          <details>
+            <summary>서구는 왜 &#x27;섬유도시&#x27;와 관련이 깊나요?</summary>
+            <p>1979년 착공해 1988년 완공된 대구염색산업단지와 서대구산업단지가 서구에 밀집해, 직물·염색 산업이 오랫동안 지역 경제의 중심이었기 때문입니다. 이 공단들이 대구를 섬유도시로 만든 실질적 토대가 되었습니다.</p>
+          </details>
+          <details>
+            <summary>서대구역에서는 어떤 열차를 탈 수 있나요?</summary>
+            <p>서대구역은 2022년 3월 31일부터 KTX와 SRT가 정차하는 고속철도역으로, 서울·부산 방면 등 주요 노선을 이용할 수 있습니다. 동대구역의 이용 부담을 분산하는 대구 서부의 관문 역할을 합니다.</p>
+          </details>
+          <details>
+            <summary>서구에는 지하철역이 있나요?</summary>
+            <p>대구 도시철도 3호선이 서구의 주요 수요처를 살짝 비껴가는 선형이어서 구를 직접 관통하는 역은 제한적입니다. 따라서 구 내부 이동은 성서3번·204번·240번 등 시내버스와 서대구역·북부정류장 연계가 핵심입니다.</p>
+          </details>
+          <details>
+            <summary>와룡산 진달래는 언제 볼 수 있나요?</summary>
+            <p>보통 매년 4월 초중순경 와룡산 용미봉 일원에서 진달래와 영산홍 군락이 만개해 붉은 장관을 이룹니다. 이 시기에 맞춰 가벼운 산행을 즐기려는 등산객이 많이 찾습니다.</p>
+          </details>
+        </div>
+      </section>
+      <section id="r-links">
+        <h2>공식 링크</h2>
+        <ul>
+          <li><a href="https://www.dgs.go.kr" rel="noopener">대구광역시 서구청 공식 홈페이지</a></li>
+          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지</a></li>
+        </ul>
+      </section>
+      <section id="r-github">
+        <h2>GitHub</h2>
+        <ul>
+          <li><a href="https://github.com/kr-daegu-seo" rel="noopener">GitHub 조직: kr-daegu-seo</a></li>
+          <li><a href="https://github.com/kr-daegu-seo/kr-daegu-seo.github.io" rel="noopener">이 사이트 저장소</a></li>
+        </ul>
+      </section>
+      <section id="r-sources">
+        <h2>출처</h2>
+        <ul class="sources">
+          <li><a href="https://ko.wikipedia.org/wiki/%EC%84%9C%EA%B5%AC_(%EB%8C%80%EA%B5%AC%EA%B4%91%EC%97%AD%EC%8B%9C)" rel="noopener">서구 (대구광역시) - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="https://www.dgs.go.kr/tour/" rel="noopener">대구 서구 문화관광 홈페이지 (공원·와룡산·명소)</a> (조회 2026-07-08)</li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EB%8C%80%EA%B5%AC%EC%97%BC%EC%83%89%EC%82%B0%EC%97%85%EB%8B%A8%EC%A7%80" rel="noopener">대구염색산업단지 - 위키백과</a> (조회 2026-07-08)</li>
+          <li><a href="http://www.busan.com/view/busan/view.php?code=2022032422283212715" rel="noopener">서대구역 31일 개통…KTX·SRT 정차 - 부산일보</a> (조회 2026-07-08)</li>
+        </ul>
+      </section>
+    </div>
+  </main>
   <aside class="cg-sponsors" aria-label="후원 파트너 상세">
     <p class="cg-spon-head"><span class="cg-ad">AD</span> 후원 파트너 <small>이 링크는 광고이며 편집상의 추천이 아닙니다 (rel=&quot;sponsored&quot;).</small></p>
     <ul class="cg-spon-grid">
